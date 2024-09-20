@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/jonperrett/go-doc-search/persist"
+	"github.com/jon-perrett/go-doc-search/persist"
 )
 
 func main() {

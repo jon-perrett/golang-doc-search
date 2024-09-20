@@ -3,8 +3,8 @@ package index
 import (
 	"testing"
 
-	"github.com/jonperrett/go-doc-search/document"
-	"github.com/jonperrett/go-doc-search/persist"
+	"github.com/jon-perrett/go-doc-search/document"
+	"github.com/jon-perrett/go-doc-search/persist"
 )
 
 func TestDocumentIndexAndRetrieval(t *testing.T) {

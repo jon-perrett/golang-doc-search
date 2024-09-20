@@ -1,7 +1,7 @@
 package index
 
 import (
-	"github.com/jonperrett/go-doc-search/persist"
+	"github.com/jon-perrett/go-doc-search/persist"
 )
 
 type Index struct {
