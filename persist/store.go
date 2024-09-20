@@ -40,3 +40,20 @@ func (s *Store) Persist(item Persistable) (err error) {
 	}
 	return nil
 }
+
+func (s *Store) Retrieve(id string) ([]byte, error) {
+	f, err := os.Open(fmt.Sprintf("%s/%s", s.Path, id))
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+	defer f.Close()
+	stat, err := f.Stat()
+	if err != nil {
+		return nil, err
+	}
+	fmt.Printf("%d", stat.Size())
+	buf := make([]byte, stat.Size())
+	_, err = f.Read(buf)
+	return buf, err
+}
