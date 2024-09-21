@@ -7,6 +7,10 @@ import (
 )
 
 type Store struct {
+	path string
+}
+
+type StoreConfig struct {
 	Path string
 }
 
@@ -15,16 +19,16 @@ type Persistable interface {
 	Id() string
 }
 
-func NewStore(path string) *Store {
-	err := os.MkdirAll(path, 0744)
+func NewStore(config StoreConfig) *Store {
+	err := os.MkdirAll(config.Path, 0744)
 	if err != nil {
 		log.Println(err)
 	}
-	return &Store{Path: path}
+	return &Store{path: config.Path}
 }
 
 func (s *Store) Persist(item Persistable) (err error) {
-	f, err := os.Create(fmt.Sprintf("%s/%s", s.Path, item.Id()))
+	f, err := os.Create(fmt.Sprintf("%s/%s", s.path, item.Id()))
 	if err != nil {
 		return err
 	}
@@ -42,7 +46,7 @@ func (s *Store) Persist(item Persistable) (err error) {
 }
 
 func (s *Store) Retrieve(id string) ([]byte, error) {
-	f, err := os.Open(fmt.Sprintf("%s/%s", s.Path, id))
+	f, err := os.Open(fmt.Sprintf("%s/%s", s.path, id))
 	if err != nil {
 		fmt.Println(err)
 		return nil, err

@@ -20,7 +20,7 @@ func (p *persistMe) Bytes() []byte {
 
 func TestPersistItem(t *testing.T) {
 	path := t.TempDir()
-	store := NewStore(path)
+	store := NewStore(StoreConfig{path})
 	p := persistMe{b: []byte{1, 2}, id: "foo"}
 	store.Persist(&p)
 	fi, err := os.Stat(fmt.Sprintf("%s/foo", path))

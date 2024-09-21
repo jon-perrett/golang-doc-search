@@ -11,7 +11,7 @@ func TestDocumentIndexAndRetrieval(t *testing.T) {
 	content := make(map[string]string)
 	content["foo"] = "bar"
 	d := document.Document{Content: content, DocumentId: "id", IndexFields: []string{"foo"}, Fields: []string{"foo"}}
-	s := persist.NewStore(t.TempDir())
+	s := persist.NewStore(persist.StoreConfig{Path: t.TempDir()})
 	s.Persist(&d)
 	i := NewIndex(s)
 	i.Add(&d)

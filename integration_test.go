@@ -9,6 +9,6 @@ import (
 
 func TestCanStoreDocument(t *testing.T) {
 	d := document.Document{}
-	store := persist.NewStore(t.TempDir())
+	store := persist.NewStore(persist.StoreConfig{t.TempDir()})
 	store.Persist(&d)
 }
